@@ -1,0 +1,21 @@
+---
+- hosts: jnkns
+  tasks:
+    - name: download packages
+      package: name={{item}} state=installed
+      with_items:
+        - wget
+        - java
+        - vim
+
+    - name: Download repo for jenkins
+      command: "wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat/jenkins.repo"
+
+    - name: key file for jenkins
+      command: "rpm --import https://pkg.jenkins.io/redhat/jenkins.io.key"
+
+    - name: Download jenkins package
+      package: name=jenkins state=installed
+
+    - name: start and enable the service
+      service: name=jenkins state=started enabled=yes

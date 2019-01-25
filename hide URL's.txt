@@ -1,0 +1,23 @@
+Put this code in ".htaccess" file:
+
+For php users:
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^\.]+)$ $1.php [NC,L]
+
+For html users:
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^\.]+)$ $1.html [NC,L]
+
+Note:
+If it doesn't work correct the settings of your Wamp Server:
+
+1) Left click WAMP icon
+
+2) Apache
+
+3) Apache Modules
+
+4) Left click rewrite_module
+
